@@ -1,7 +1,5 @@
 #include<stdio.h>
 int x;
-int y;
-int ascii;
 char sentence[100];	
 int checkBlank(char *sent)
 {
@@ -19,7 +17,7 @@ int checkBlank(char *sent)
 	}
 	if(count>0)
 		{
-			printf("This is a blank space!");
+			printf("This is a blank space!\n");
 			return 1;
 		}
 }
@@ -39,7 +37,7 @@ int checkDigit(char *sent)
 	}
 	if(none>0)
 	{
-		printf("This is a digit!");
+		printf("This is a digit!\n");
 		return 1;
 	}
 }
@@ -59,7 +57,7 @@ int checkAlpha(char *sent)
 	}
 	if(alphacount>0)
 	{
-		printf("This is letter!");
+		printf("This is letter!\n");
 		return 1;
 	}
 }
@@ -82,41 +80,28 @@ int checkAlphaDigit(char *sent)
 	}
 	if(alphacount>0)
 	{
-		printf("This is alphanumeric!");
+		printf("This is alphanumeric!\n");
 		return 1;
 	}
 }
 int checkHexDigit(char *sent)
 {
 	int hex=0;
-	char hexcheck[]={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-	for(x=0;x!='\0';x++)
+	for(x=0;*sent!='\0';x++)
 	{
-		for(y=0;y<16;y++)
+		if (!((*sent >= '0' || *sent <= '9') && (*sent >= 'A' || *sent <= 'F')))
 		{
-		    if(*sent==hexcheck[y])
-		    {
-	            hex++;
-		    }else
-		    {
-			    hex=0;
-		    }
-	    }
+	        return 0;
+		}
 	    sent++;
 	}
-	if(hex>0)
-	{
-		printf("This is in hexidecimal form!");
-		return 1;
-	}else
-	{
-		return 0;
-	}
+	printf("This is in hexidecimal form!\n");
+	return 1;
 }
 int checkLower(char *sent)
 {
 	int low=0;
-	for(x=0;x!='\0';x++)
+	for(x=0;*sent!='\0';x++)
 	{
 		if(*sent>='a'&&*sent<='z')
 		{
@@ -129,7 +114,7 @@ int checkLower(char *sent)
 	}
 	if(low>0)
 	{
-		printf("This is in lowercase!");
+		printf("This is in lowercase!\n");
 		return 1;
 	}
 }
@@ -149,7 +134,7 @@ int checkUpper(char *sent)
 	}
 	if(high>0)
 	{
-		printf("This is in uppercase!");
+		printf("This is in uppercase!\n");
 		return 1;
 	}
 }
@@ -185,17 +170,14 @@ int checkSpace(char *sent)
 			space++;
 		}else
 		{
-			space=0;
+			return 0;
 		}
 		sent++;
 	}
 	if(space>0)
 	{
-		printf("This is a space character!");
+		printf("This is a space character!\n");
 		return 1;
-	}else
-	{
-		return 0;
 	}
 }
 int checkControl(char *sent)
@@ -214,7 +196,7 @@ int checkControl(char *sent)
 	}
 	if(control>0)
 	{
-		printf("This is a control character!");
+		printf("This is a control character!\n");
 		return 1;
 	}else
 	{
@@ -237,7 +219,7 @@ int checkPunct(char *sent)
 	}
 	if(punct>0)
 	{
-		printf("This is punctuation!");
+		printf("This is punctuation!\n");
 		return 1;
 	}else
 	{
@@ -260,12 +242,9 @@ int checkPrint(char *sent)
 	}
 	if(print>0)
 	{
-		printf("This is a printable character!");
+		printf("This is a printable character!\n");
 		return 1;
-	}else
-	{
-		return 0;
-	}
+    }
 }
 int checkGraph(char *sent)
 {
@@ -283,7 +262,7 @@ int checkGraph(char *sent)
 	}
 	if(graph>0)
 	{
-		printf("This is a graphable character!");
+		printf("This is a graphable character!\n");
 		return 1;
 	}else
 	{
@@ -295,7 +274,7 @@ void Menu()
 	int choice;
 	printf("Enter any input to check:");
 	scanf("%99[^\n]", &sentence);
-	printf("Select a Function: \n1.CheckBlank\n2.CheckDigit\n3.CheckAlpha\n4.CheckAlphaDigit\n5.CheckHexDigit\n6.CheckLower\n7.CheckUpper\n8.TurnLower\n9.TurnUpper\n10.CheckSpace\n11.CheckControl\n12.CheckPunct\n13.CheckPrint\n14.CheckGraph");
+	printf("Select a Function: \n\n1.CheckBlank\n\n2.CheckDigit\n\n3.CheckAlpha\n\n4.CheckAlphaDigit\n\n5.CheckHexDigit\n\n6.CheckLower\n\n7.CheckUpper\n\n8.TurnLower\n\n9.TurnUpper\n\n10.CheckSpace\n\n11.CheckControl\n\n12.CheckPunct\n\n13.CheckPrint\n\n14.CheckGraph");
 	printf("\n\nChoice:");
 	scanf("%d", &choice);
 	getchar();
@@ -318,42 +297,42 @@ void Menu()
 			}
 		case 4:
 			{
-				checkAlphaDigit(&sentence);
+				checkAlphaDigit(sentence);
 				break;
 			}
 		case 5:
 			{
-				checkHexDigit(&sentence);
+				checkHexDigit(sentence);
 				break;
 			}
 		case 6:
 			{
-				checkLower(&sentence);
+				checkLower(sentence);
 				break;
 			}
 		case 7:
 			{
-				checkUpper(&sentence);
+				checkUpper(sentence);
 				break;
 			}
 		case 8:
 			{
-				turnLower(&sentence);
+				turnLower(sentence);
 				break;
 			}
 		case 9:
 			{
-				turnUpper(&sentence);
+				turnUpper(sentence);
 				break;
 			}
 		case 10:
 			{
-				checkSpace(&sentence);
+				checkSpace(sentence);
 				break;
 			}
 		case 11:
 			{
-				checkControl(&sentence);
+				checkControl(sentence);
 				break;
 			}
 		case 12:
@@ -382,5 +361,6 @@ void Menu()
 main()
 {
 	Menu();
-	return 0;
+    printf("Your sentence: %s", sentence);
+    return 0;
 }
