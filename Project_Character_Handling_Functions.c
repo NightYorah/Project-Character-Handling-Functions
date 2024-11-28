@@ -263,7 +263,7 @@ void Menu()
 	fgets(sentence, sizeof(sentence), stdin);
 	printf("Select a Function: \n\n1.CheckBlank\n\n2.CheckDigit\n\n3.CheckAlpha\n\n4.CheckAlphaDigit\n\n5.CheckHexDigit\n\n6.CheckLower\n\n7.CheckUpper\n\n8.TurnLower\n\n9.TurnUpper\n\n10.CheckSpace\n\n11.CheckControl\n\n12.CheckPunct\n\n13.CheckPrint\n\n14.CheckGraph");
 	printf("\n\nChoice:");
-	scanf("%d", &choice);
+	scanf_s("%d", &choice);
 	switch(choice)
 	{
 		case 1:
